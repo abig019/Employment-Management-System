@@ -7,8 +7,10 @@ const Login = ({ onLoginSuccess }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+
     if (username === 'admin' && password === 'admin123') {
+      // 🔑 Add this line to save the login state to Local Storage
+      localStorage.setItem('isLoggedIn', 'true');
       onLoginSuccess();
     } else {
       setError('Invalid username or password.');
