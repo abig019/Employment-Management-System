@@ -6,13 +6,15 @@ const ContactUs = ({ setCurrentView }) => {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber, email }),
@@ -54,7 +56,8 @@ const ContactUs = ({ setCurrentView }) => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm 
+              focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
@@ -68,7 +71,8 @@ const ContactUs = ({ setCurrentView }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm 
+              focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
@@ -85,7 +89,8 @@ const ContactUs = ({ setCurrentView }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold text-lg 
+            hover:bg-blue-700 transition-colors shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
